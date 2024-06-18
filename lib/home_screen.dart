@@ -8,7 +8,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var color = 0;
+  var a = 0;
+  var b = 0;
+  var c = Colors.amber;
+  void color1(int a) {
+    if (a == 1) {
+      c = Colors.red;
+    } else if (a == 2) {
+      c = Colors.green;
+    } else if (a == 3) {
+      c = Colors.blue;
+    } else {
+      c = Colors.amber;
+    }
+  }
+
+  List<Widget> container1(int n) {
+    var list = <Widget>[];
+    for (int i = 1; i <= n; i++) {
+      list.add(Container(
+        height: 100,
+        width: 100,
+        color: c,
+      ));
+    }
+    return list;
+  }
+
   final TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -33,7 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.red.shade400),
                     onPressed: () {
-                      color = 1;
+                      a = 1;
+                      color1(a);
+                      setState(() {});
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(10),
@@ -53,7 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.green.shade400),
                     onPressed: () {
-                      color = 2;
+                      a = 2;
+                      color1(a);
+                      setState(() {});
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(10),
@@ -72,7 +102,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: TextButton(
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.blue.shade400),
-                    onPressed: () {},
+                    onPressed: () {
+                      a = 3;
+                      color1(a);
+                      setState(() {});
+                    },
                     child: const Padding(
                       padding: EdgeInsets.all(10),
                       child: Text(
@@ -117,7 +151,13 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.fromLTRB(0, 5, 0, 10),
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.black),
-                onPressed: () {},
+                onPressed: () {
+                  if (textEditingController.text.isEmpty) {
+                    return;
+                  }
+                  b = int.parse(textEditingController.text.toString());
+                  setState(() {});
+                },
                 child: const Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
@@ -130,62 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Wrap(
-              spacing: 4,
-              runSpacing: 4,
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.amber,
-                )
-              ],
-            )
+            Wrap(spacing: 4, runSpacing: 4, children: container1(b))
           ],
         ),
       ),
